@@ -121,11 +121,19 @@ p {
 
 /* Navbar */
 #navbar {
+  position: fixed;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 16px;
+  background-color: transparent;
+  transition: all var(--animation-duration) ease-in-out;
+}
+
+#navbar.navbar--dark {
   background-color: var(--color-pink);
+  padding: 8px;
 }
 
 .navbar__logo {
@@ -155,11 +163,23 @@ p {
   border-radius: var(--size-border-radius);
 }
 
+/* Toggle button */
+/* 자리에서 빠져나와 포지션이 되는 것 absolute 사용 */
+.navbar__toggle-btn {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  font-size: 24px;
+  color: var(--color-white);
+  display: none;
+}
+
 /* Home */
 #home {
   background: url("imgs/homebackground.png") center/cover no-repeat;
   padding: 40px;
   text-align: center;
+  padding-top: 120px;
 }
 
 .home__avatar {
@@ -171,12 +191,13 @@ p {
 
 .home__title,
 .home__description {
-  color: var(--color-dark-pink);
+  color: var(--color-white);
 }
 
 .home__contact {
   font-size: var(--font-regular);
   font-weight: var(--weight-bold);
+  color: var(--color-white);
   margin: 24px;
   padding: 8px 12px;
   border: 2px solid var(--color-white);
@@ -451,7 +472,7 @@ p {
   margin: 32px 0;
 }
 
-.contact__links: {
+.contact__links {
   font-size: var(--font-large);
   margin: 24px 0;
 }
@@ -460,4 +481,40 @@ p {
   transform: scale(1.1);
   color: var(--color-dark-pink);
   transition: var(--animation-duration);
+}
+/*  For below 768px screen width*/
+@media screen and (max-width: 768px) {
+  .navbar__toggle-btn {
+    display: block;
+  }
+  #navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .navbar__meun {
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    display: none;
+  }
+
+  .about__majors {
+    flex-direction: column;
+  }
+
+  .major {
+    margin-bottom: 38px;
+  }
+
+  .skillset {
+    flex-direction: column;
+  }
+  .project {
+    flex-grow: 1;
+  }
+
+  .testimonial__avatar {
+    width: 80px;
+    height: 80px;
+  }
 }
