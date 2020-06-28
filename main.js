@@ -9,9 +9,9 @@ document.addEventListener("scroll", () => {
   console.log(window.scrollY);
   console.log(`navbarHeight: ${navbarHeight}`);
   if (window.scrollY > navbarHeight) {
-    navbar.classList.add("navbar--pink");
+    navbar.classList.add("navbar--dark");
   } else {
-    navbar.classList.remove("navbar--pink");
+    navbar.classList.remove("navbar--dark");
   }
 });
 
