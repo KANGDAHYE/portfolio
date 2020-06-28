@@ -6,8 +6,8 @@
 const navbar = document.querySelector("#navbar");
 const navbarHeight = navbar.getBoundingClientRect().height;
 document.addEventListener("scroll", () => {
-  console.log(window.scrollY);
-  console.log(`navbarHeight: ${navbarHeight}`);
+  // console.log(window.scrollY);
+  // console.log(`navbarHeight: ${navbarHeight}`);
   if (window.scrollY > navbarHeight) {
     navbar.classList.add("navbar--dark");
   } else {
@@ -36,6 +36,19 @@ navbarMeun.addEventListener("click", (event) => {
 const homeContactBtn = document.querySelector(".home__contact");
 homeContactBtn.addEventListener("click", () => {
   scrollIntoView("#contact");
+});
+
+// Make home slowly fade to transparent as the window scrolls down
+const home = document.querySelector(".home__container");
+const homeHeight = home.getBoundingClientRect().height;
+document.addEventListener("scroll", () => {
+  //1 은 불투명
+  // 처음 시작 ex.  (1 - 0 / 800 ) = 1
+  // 스크롤 반 내려옴 (1 - 400 / 800 ) = 0.5
+  // 스크롤 다 내려옴 (1 - 800 / 800 ) = 0
+  // 스크롤 더 내려감 (1 - 1600 / 800 ) = -1
+  // console.log(1 - window.scrollY / homeHeight);
+  home.style.opacity = 1 - window.scrollY / homeHeight;
 });
 
 function scrollIntoView(selector) {
