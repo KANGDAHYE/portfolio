@@ -483,6 +483,34 @@ p {
   color: var(--color-dark-pink);
   transition: var(--animation-duration);
 }
+
+/* Scroll */
+.arrow-up {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: 70px;
+  height: 70px;
+  font-size: 50px;
+  color: var(--color-white);
+  background-color: var(--color-pink);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  /* display: none; 완전히 없어졌다 나타나기 때문에
+  애니매이션 적용이 안됨.*/
+  /* 대신 opacity 적용 단 안 보여도 클릭 됨 
+  pointer-events 사용해서 못 누르게 만듦*/
+  transition: opacity 300ms ease-in;
+}
+
+.arrow-up.visible {
+  /* display: block; */
+  opacity: 1;
+  /* 사용 되야 되는 부분 에서는 사용 되게 */
+  pointer-events: auto;
+}
+
 /*  For below 768px screen width*/
 @media screen and (max-width: 768px) {
   .navbar__toggle-btn {
