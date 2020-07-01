@@ -66,6 +66,58 @@ arrowUp.addEventListener("click", () => {
   scrollIntoView("#home");
 });
 
+//Projects
+const workBtnContainer = document.querySelector(".work__categories");
+const projectContainer = document.querySelector(".work__projects");
+//각각의 projects 배열로 받아오려고 전부 받아옴
+const projects = document.querySelectorAll(".project");
+workBtnContainer.addEventListener("click", (e) => {
+  // <span>으로 되어있는 곳 데이터 Undefined. filter에 데이터 없으면
+  const filter = e.target.dataset.filter || e.target.parentNode.dataset.filter;
+  // console.log(filter);
+  if (filter == null) {
+    return;
+  }
+  projectContainer.classList.add("anim-out");
+  setTimeout(() => {
+    projects.forEach((project) => {
+      // console.log(project);
+      // console.log(project.dataset.type);
+      if (filter === "*" || filter === project.dataset.type) {
+        // Html에서는 보여지고 클릭했을 때만 안보여지게
+        //filter가 맞으면 안보여지는 class를 빼고 만약 filer가 동일하지 않으면
+        //안보여져야 되니까 안보여져야 되는 class를 등록 해준다.
+        project.classList.remove("invisible");
+      } else {
+        project.classList.add("invisible");
+      }
+      // anim-out이 클릭되면 계속 anim-out이 된 상태로 남아 있기 때문에 CSS에 적용한 opacity(불투명)
+      // 이 남아 있음. 일정 시간 지난 다음에는 클래스의 anim-out 없애줘야함
+      // Timeout이 되면 우리가 등록한 함수를 불러줘, 그리고 300ms 뒤에(0.3초) 우리 함수를 불러줘
+      // 0.3초가 지나면 anim-out 없애줌 => opacity가 1로 돌아올 수 있도록
+    });
+    projectContainer.classList.remove("anim-out");
+  }, 300);
+
+  // console.log("================조금 더 간단==================");
+  // for (let project of projects) {
+  //   console.log(project); // }
+
+  // console.log("=================학원방식=================");
+  // let project;
+  // for (let i = 0; i < projects.length; i++) {
+  //   project = projects[i];
+  //   console.log(project);
+  // }
+
+  //모든 코드는 동기적 처리, class에서 animation 추가하자 마자 모든 project DOM Element에 필요없는 프로젝트
+  //필터링한 다음에 이 코드가 완료되면 브라우저에서 업데이트 되기 때문  => 약간 민망한 애니메이션 만들어짐.
+  //anim-out이 된 다음(보여진 다음)에 필터링된 아이들이 적용되게 해야됨.
+  //anim-out이 0.3초가 지났을때 그때 필터링을 해서 다시 anim-out을 없애주는 코드.
+  //anim-out class 추가후 코드는 끝이남(setTimeout이 전달한 함수는 0.3초 이후에 브라우저로 부터 호출됨.
+  //(setTimeout은 브라우저가 제공하는 API이기 때문에)브라우저야 우리 코드를 0.3초 이후에 실행해줘 라고 전달만 해놓고 블럭을 끝냄)
+});
+
 function scrollIntoView(selector) {
   const scrollTo = document.querySelector(selector);
   scrollTo.scrollIntoView({ behavior: "smooth" });
