@@ -28,7 +28,14 @@ navbarMeun.addEventListener("click", (event) => {
   //자주 사용될 scrollIntoView 함수로 만듦
   // const scrollTo = document.querySelector(link);
   // scrollTo.scrollIntoView({ behavior: "smooth" });
+  navbarMeun.classList.remove("open");
   scrollIntoView(link);
+});
+
+// Navbar taggle button for small screen
+const navbarToggleBtn = document.querySelector(".navbar__toggle-btn");
+navbarToggleBtn.addEventListener("click", () => {
+  navbarMeun.classList.toggle("open");
 });
 
 //Handle click on "contact me" button home
